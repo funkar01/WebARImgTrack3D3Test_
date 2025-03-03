@@ -72,43 +72,43 @@ This works to record the whole screen along with google tabs
             }
         });
 
-        let mediaRecorder;
-        let recordedChunks = [];
+        // let mediaRecorder;
+        // let recordedChunks = [];
 
-        async function startRecording() {
-            let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
-            mediaRecorder = new MediaRecorder(screenStream, { mimeType: "video/webm" });
+        // async function startRecording() {
+        //     let screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+        //     mediaRecorder = new MediaRecorder(screenStream, { mimeType: "video/webm" });
 
-            mediaRecorder.ondataavailable = (event) => {
-                if (event.data.size > 0) {
-                    recordedChunks.push(event.data);
-                }
-            };
+        //     mediaRecorder.ondataavailable = (event) => {
+        //         if (event.data.size > 0) {
+        //             recordedChunks.push(event.data);
+        //         }
+        //     };
 
-            mediaRecorder.onstop = () => {
-                const blob = new Blob(recordedChunks, { type: "video/webm" });
-                const url = URL.createObjectURL(blob);
-                const download = document.getElementById("download");
-                download.href = url;
-                download.download = "recording.webm";
-                download.style.display = "block";
-            };
+        //     mediaRecorder.onstop = () => {
+        //         const blob = new Blob(recordedChunks, { type: "video/webm" });
+        //         const url = URL.createObjectURL(blob);
+        //         const download = document.getElementById("download");
+        //         download.href = url;
+        //         download.download = "recording.webm";
+        //         download.style.display = "block";
+        //     };
 
-            mediaRecorder.start();
-        }
+        //     mediaRecorder.start();
+        // }
 
-        document.getElementById("start").addEventListener("click", async () => {
-            recordedChunks = [];
-            await startRecording();
-            document.getElementById("start").disabled = true;
-            document.getElementById("stop").disabled = false;
-        });
+        // document.getElementById("start").addEventListener("click", async () => {
+        //     recordedChunks = [];
+        //     await startRecording();
+        //     document.getElementById("start").disabled = true;
+        //     document.getElementById("stop").disabled = false;
+        // });
 
-        document.getElementById("stop").addEventListener("click", () => {
-            mediaRecorder.stop();
-            document.getElementById("start").disabled = false;
-            document.getElementById("stop").disabled = true;
-        });
+        // document.getElementById("stop").addEventListener("click", () => {
+        //     mediaRecorder.stop();
+        //     document.getElementById("start").disabled = false;
+        //     document.getElementById("stop").disabled = true;
+        // });
     </script>
 
     <a-scene vr-mode-ui="enabled: false;" loading-screen="enabled: false;" renderer="logarithmicDepthBuffer: true;"
